@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-class book {
+class Book {
 
 private :
 	string  name;
@@ -10,6 +10,7 @@ private :
 	int id;
 
 public:
+    Book(string in_name, int in_id, string in_author);
 	void set_name(string n) {
 		name = n;
 	}
@@ -19,22 +20,22 @@ public:
 	void set_id(int i) {
 		id = i;
 	}
-	void get_name(string n) {
-		name = n;
+	string get_name() {
+		return name;
 	}
-	void get_author(string a) {
-		author = a;
+	string get_author() {
+		return author;
 	}
-	void get_id(int i) {
-		id = i;
-	}
+	int get_id() {
+		return id;
+	} 
 
 
 
 
 };
 
-book::book(string_in_name, int _in _id, string _in _author) {
+Book::Book(string in_name, int in_id, string in_author) {
 	name = in_name;
 	id = in_id;
 	author = in_author;
