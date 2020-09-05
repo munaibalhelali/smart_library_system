@@ -1,33 +1,17 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include "login.h"
 
- typedef struct {
-  string name;
-  int password;
-}logindaten;
+Login::admin = 'a';
+Login::student = 's';
 
-class Login{
-  private:
-   char admin='a', student='s', variable1;
-  
-  public:
-  Login( ){}
+Login::Login(){}
 
-  logindaten read_login_data(string a){
-  logindaten user1;
-  user1.name = "ashraf";
-  user1.password = 12345;
-
-  return user1;
-}
-  int login(){
+int Login::login(){
     cout<<"type of your Account a Admin/ s Student ?"<<endl;
-    cin>>variable1;
+    cin>>choice;
 
-    if(variable1==admin){
+    if(choice==admin){
       cout<<"Welcom admin!"<<endl;
-      logindaten user_data;
+      LoginData user_data;
       string user_name;
       int user_password;
       cout<<"Enter your Name: ";
@@ -44,14 +28,14 @@ class Login{
       }catch(int e){
         cout<<"Execption:"<<e<<endl;
       }
-      cout<<user_data.name<<" "<<user_data.password <<endl;
-      if(user_data.name==user_name && user_data.password==user_password){
+      cout<<user_data.get_name()<<" "<<user_data.get_password() <<endl;
+      if(user_data.get_name()==user_name && user_data.get_password()==user_password){
               cout<<"Welcome, Admin "<< user_name<<endl;
       }
       return 1;
 
     }
-    else if(variable1==student){
+    else if(choice==student){
     logindaten user_data;
     string user_name;
     int user_password;
@@ -75,22 +59,10 @@ class Login{
     }
   }
 
-  string to_json(logindaten input){
+  string Login::to_json(Login input){
     string temp="{";
-    temp += "name:"+input.name;
-    temp += "password:"+ to_string(input.password);
+    temp += "name:"+input.get_name();
+    temp += "password:"+ to_string(input.get_password());
     temp += "}";
     return temp;
   }
-};
-
-
-//testing the class
-int main(){
-  Login log;
-  
-  while(1){
-    log.login();
-  }
-  return 0;
-}
