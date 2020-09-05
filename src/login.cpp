@@ -1,10 +1,6 @@
 
 #include "login.h"
 
-Login::admin = 'a';
-Login::student = 's';
-
-
 Login::Login(){}
 
 int Login::login(){
@@ -20,7 +16,7 @@ int Login::login(){
       cout<<"Enter your Name: ";
       cin>>user_name;
       try{
-      user_data = read_login_data(user_name);
+      user_data = database.read_login_data(user_name);
       } catch(int) {
         cout<<"User name does not exist!"<<endl;
         return 0;
@@ -40,7 +36,7 @@ int Login::login(){
 
     }
     else if(choice==student){
-    logindaten user_data;
+    LoginData user_data;
 
     string user_name;
     int user_password;

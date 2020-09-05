@@ -1,18 +1,20 @@
 #include <iostream>
 #include <string>
 #include "login_data.h"
+#include "database.h"
 using namespace std;
 
 class Login{
   private:
-   char admin, student, choice;
-  
+    char admin='a', student='s', choice;
+    Database database;
   public:
   Login( );
 
-  int login()
+  int login();
 
-  string to_json(logindaten input);
+  string to_json(LoginData input);
 };
+
 
 
