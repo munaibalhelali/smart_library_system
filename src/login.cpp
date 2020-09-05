@@ -1,29 +1,18 @@
-#include <iostream>
-#include <string>
-#include "login_data.h"
 
-using namespace std;
+#include "login.h"
+
+Login::admin = 'a';
+Login::student = 's';
 
 
-class Login{
-  private:
-   char admin='a', student='s', variable1;
-  
-  public:
-  Login( ){}
+Login::Login(){}
 
-//   LoginData read_login_data(string a){
-//   LoginData user1;
-//   user1.name = "ashraf";
-//   user1.password = 12345;
+int Login::login(){
 
-//   return user1;
-// }
-  int login(){
     cout<<"type of your Account a Admin/ s Student ?"<<endl;
-    cin>>variable1;
+    cin>>choice;
 
-    if(variable1==admin){
+    if(choice==admin){
       cout<<"Welcom admin!"<<endl;
       LoginData user_data;
       string user_name;
@@ -42,15 +31,17 @@ class Login{
       }catch(int e){
         cout<<"Execption:"<<e<<endl;
       }
-      cout<<user_data.name<<" "<<user_data.password <<endl;
-      if(user_data.get_name==user_name && user_data.get_password==user_password){
+      cout<<user_data.get_name()<<" "<<user_data.get_password() <<endl;
+      if(user_data.get_name()==user_name && user_data.get_password()==user_password){
+
               cout<<"Welcome, Admin "<< user_name<<endl;
       }
       return 1;
 
     }
-    else if(variable1==student){
-    LoginData user_data;
+    else if(choice==student){
+    logindaten user_data;
+
     string user_name;
     int user_password;
     cout<<"Enter your Name: ";
@@ -73,22 +64,11 @@ class Login{
     }
   }
 
-  // string to_json(LoginData input){
-  //   string temp="{";
-  //   temp += "name:"+input.name;
-  //   temp += "password:"+ to_string(input.password);
-  //   temp += "}";
-  //   return temp;
-  // }
-};
-
-
-//testing the class
-int main(){
-  Login log;
-  
-  while(1){
-    log.login();
+  string Login::to_json(Login input){
+    string temp="{";
+    temp += "name:"+input.get_name();
+    temp += "password:"+ to_string(input.get_password());
+    temp += "}";
+    return temp;
   }
-  return 0;
-}
+
