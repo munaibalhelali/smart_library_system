@@ -1,8 +1,17 @@
 #include <iostream>
+#include <string>
+
 #include "student.h"
 #include "book.h"
 #include "admin.h"
 #include "shelf.h"
+#include "login_data.h"
+#include <jsoncons/json.hpp>
+#include <dirent.h>
+#include <sys/types.h>
+
+using namespace std;
+
 
 class Database{
     private:
@@ -15,7 +24,7 @@ class Database{
         //constructor
         Database();
 
-        //read from files all items at once
+        //read from file all items at once
         int read_students();
         int read_books();
         int read_admins();
@@ -28,11 +37,18 @@ class Database{
         int write_shelf(Shelf shelf);
 
         //getters
-        Student get_student(string username);
-        Book get_book(string id);
-        Admin get_admin(sting username);
-        Shelf get_shelf(string id);
+        auto get_student(string username);
+        auto get_book(string id);
+        auto get_admin(sting username);
+        auto get_shelf(string id);
+
+        //delete funcitons
+        int delete_student(int id);
+        int delete_book(int id);
+        int delete_admin(int id);
+        int delete_shelf(int id);
 
         
-
+        LoginData read_login_data(string username);  
+        
 };

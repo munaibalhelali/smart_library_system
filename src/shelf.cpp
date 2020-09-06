@@ -1,23 +1,6 @@
-// Example program
-#include <iostream>
-#include <string>
+#include "shelf.h"
 
-class Shelf(){
-private:
-    size = 20;
-    string name;
-    int id;
-    string location;
-    Book available_books[size]={NULL}
-    
-    
-public: 
-    Shelf(string in_name, int in_id, string in_location);
-    void add_book(Book b);
-    void remove_book(string book_name);
-};
-
-Shelf::Shelf(string in_name, int in_id, string in_location){
+Shelf::Shelf(string in_id , string in_name, string in_location){
     name = in_name;
     id = in_id;
     location = in_location;

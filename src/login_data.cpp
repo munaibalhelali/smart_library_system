@@ -12,7 +12,9 @@ LoginData::LoginData(string in_name, string in_password)
     password = in_password;   
     valid = true; 
 }
-
+void LoginData:: is_valid(bool val){
+    valid = val;
+}
 string LoginData::get_name() 
 {
     return name;   

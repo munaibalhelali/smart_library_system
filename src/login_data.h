@@ -9,6 +9,7 @@ class LoginData {
     public:
     LoginData();
     LoginData(string in_name, string password);
+    void is_valid(bool val);
     string get_name();
     string get_password();
 

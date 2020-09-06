@@ -3,21 +3,11 @@
 #include<fstream>
 #include "student.h"
 #include "database.h"
+#include "admin_class.h"
 using namespace std;
-class Admin{
-    private:
-    Database database;
-    Student student_list[100];
-   string student_name,berth_date,student_address;
-   int student_id,admin_id;
-    public:
-    void add_student();
-    void remove_student();
-    void add_admin();
-    void remove_admin();
-    void add_book();
-    void remove_book();
-};
+
+Admin::Admin(){}
+Admin::Admin()
 void Admin::add_student(){
     Student student_temp;
     string student_temp;

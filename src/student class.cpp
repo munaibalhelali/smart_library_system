@@ -33,7 +33,7 @@ class Student {
       birthdate=BD;
     }
     
-    int get_ID() {
+    int get_id() {
       return ID;
     }
     string get_name() {
