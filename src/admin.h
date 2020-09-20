@@ -1,3 +1,6 @@
+#ifndef ADMIN
+#define ADMIN
+
 #include<iostream>
 #include"database.h"
 #include"student.h"
@@ -23,3 +26,5 @@ public:
   void add_book();
   void remove_book();
 };
+
+#endif

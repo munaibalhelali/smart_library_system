@@ -1,3 +1,6 @@
+#ifndef LOGIN
+#define LOGIN
+
 #include <iostream>
 #include <string>
 #include "login_data.h"
@@ -16,5 +19,4 @@ class Login{
   string to_json(LoginData input);
 };
 
-
-
+#endif
