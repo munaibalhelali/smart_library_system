@@ -28,10 +28,10 @@ class Database{
         Database();
 
         //read from file all items at once
-        int read_students();
-        int read_books();
-        int read_admins();
-        int read_shelfs();
+        // int read_students();
+        Book* read_books();
+        // int read_admins();
+        // int read_shelfs();
 
         //write to files one item a time
         int write_student(Student student);

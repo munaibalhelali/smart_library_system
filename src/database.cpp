@@ -28,7 +28,8 @@ int Database::write_student(Student student){
     json_student.insert_or_assign("id", student.get_ID());
     json_student.insert_or_assign("address", student.get_address() );
     json_student.insert_or_assign("birthdate", student.get_birth_date());
-
+    json_student.insert_or_assign("book_list", student.get_book_list());
+    
     cout<<json_student<<endl;
     ofstream output_file(path,ios::out);
     output_file<<json_student;

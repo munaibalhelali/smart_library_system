@@ -29,6 +29,12 @@ int Book::get_id() {
 	return id;
 } 
 
+void Book::make_available(bool status){
+	available = status;
+}
+
+
+
 
 
 

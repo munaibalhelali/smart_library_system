@@ -10,6 +10,7 @@ private :
 	string  name;
 	string author; 
 	string id;
+	bool available = true;
 	
 public:
 	bool valid=true;
@@ -27,6 +28,7 @@ public:
 	
 	string get_id();
 
+	void make_available(bool status);
 
 
 };

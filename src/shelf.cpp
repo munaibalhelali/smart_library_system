@@ -22,9 +22,9 @@ Book Shelf::get_available_books(){
 
 void Shelf::add_book(Book b){
     for(int i=0; i<size;i++){
-     if (available_books[i].valide == false ){
+     if (available_books[i].valid == false ){
          available_books[i] = b;
-         return
+         return;
      }
     }
     cout<<"The shelf is full!"<<endl;
