@@ -6,6 +6,7 @@
 using namespace std;
 
   	Student::Student() {
+      
       valid = false;
 	  }  
   	Student::Student(int id, string nm, string adrs, string BD)  
