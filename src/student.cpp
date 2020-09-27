@@ -1,54 +1,44 @@
 #include <iostream>
+#include <string>
+#include "student.h"
+#include "database.h"
+#include "admin_class.h"
 using namespace std;
 
-class Student {
-  private:
-    // Private attribute
-    int ID;
-    string name;
-    string address;
-    string birthdate;
-    
-  public:
-  	Student() {
+  	Student::Student() {
+      valid = false;
 	  }  
-  	Student(int id, string nm, string adrs, string BD)  
+  	Student::Student(int id, string nm, string adrs, string BD)  
         {
            ID=id;
            name=nm;
            address=adrs;
            birthdate=BD;
         }
-     void set_ID(int id) {
+    void Student::set_ID(int id) {
       ID=id;
     }
-    void set_name(string nm) {
+    void Student::set_name(string nm) {
       name=nm;
     }
-     void set_address(string adrs) {
+     void Student::set_address(string adrs) {
       address=adrs;
     }
     
-     void set_birth_date(string BD) {
+     void Student::set_birth_date(string BD) {
       birthdate=BD;
     }
     
-    int get_id() {
+    int Student::get_id() {
       return ID;
     }
-    string get_name() {
+    string Student::get_name() {
       return name;
     }
-     string get_address() {
+     string Student::get_address() {
       return address;
     }
-     string get_birth_date() {
+     string Student::get_birth_date() {
       return birthdate;
     }
 };
-
-int main() {
-	
-  return 0;
-}
-
