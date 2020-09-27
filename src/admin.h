@@ -1,3 +1,6 @@
+#ifndef ADMIN
+#define ADMIN
+
 #include<iostream>
 #include"database.h"
 #include"student.h"
@@ -35,3 +38,5 @@ string get_birth_date();
   void add_book();
   void remove_book();
 };
+
+#endif

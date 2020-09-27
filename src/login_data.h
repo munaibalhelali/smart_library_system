@@ -1,3 +1,7 @@
+#ifndef LOGIN_DATA
+#define LOGIN_DATA
+
+
 #include <string>
 using namespace std;
 
@@ -16,4 +20,4 @@ class LoginData {
     bool is_correct(LoginData in_data);
     };
  
-    
+#endif

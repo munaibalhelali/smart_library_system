@@ -3,7 +3,7 @@
 #include<fstream>
 #include "student.h"
 #include "database.h"
-#include "admin_class.h"
+#include "admin.h"
 using namespace std;
 
 Admin::Admin(){}
