@@ -1,46 +1,41 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include "book.h"
 
-class Book {
-
-private :
-	string  name;
-	string author; 
-	int id;
-
-public:
-    Book(string in_name, int in_id, string in_author);
-	void set_name(string n) {
-		name = n;
-	}
-	void set_author(string a) {
-		author = a;
-	}
-	void set_id(int i) {
-		id = i;
-	}
-	string get_name() {
-		return name;
-	}
-	string get_author() {
-		return author;
-	}
-	int get_id() {
-		return id;
-	} 
-
-
-
-
-};
-
+Book::Book(){
+	valid = false;
+}
 Book::Book(string in_name, int in_id, string in_author) {
 	name = in_name;
 	id = in_id;
 	author = in_author;
 
 }
+
+void Book::set_name(string n) {
+	name = n;
+}
+void Book::set_author(string a) {
+	author = a;
+}
+void Book::set_id(int i) {
+	id = i;
+}
+string Book::get_name() {
+	return name;
+}
+string Book::get_author() {
+	return author;
+}
+int Book::get_id() {
+	return id;
+} 
+
+void Book::make_available(bool status){
+	available = status;
+}
+
+
+
+
 
 
 
