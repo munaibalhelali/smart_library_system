@@ -15,20 +15,21 @@ void list_dir(const char *path) {
 
 //defintion of the Database class funcitons
 
-Database();
+Database::Database(){}
 
 //write to files one item a time
 int Database::write_student(Student student){
     string path = "../data/students";
-    path +=student.get_id()+".json";
+    path +=student.get_ID()+".json";
 
     jsoncons::json json_student;
 
     json_student.insert_or_assign("name", student.get_name()); 
-    json_student.insert_or_assign("id", student.get_id());
+    json_student.insert_or_assign("id", student.get_ID());
     json_student.insert_or_assign("address", student.get_address() );
-    json_student.insert_or_assign("birthdate", student.get_birthdate());
-
+    json_student.insert_or_assign("birthdate", student.get_birth_date());
+    json_student.insert_or_assign("book_list", student.get_book_list());
+    
     cout<<json_student<<endl;
     ofstream output_file(path,ios::out);
     output_file<<json_student;
@@ -85,7 +86,7 @@ int Database::write_shelf(Shelf shelf){
     }
 
 //getters
-auto Database::get_student(string id){
+Student Database::get_student(string id){
     string path = "../data/students";
     path += id+".json";
 
@@ -96,7 +97,7 @@ auto Database::get_student(string id){
                         std["address"], std["birthdate"]);
         return student;
     }catch{
-        return false;
+        return Student student();
     }
     
 }
@@ -130,7 +131,7 @@ auto Database::get_admin(string id){
 auto Database::get_shelf(string id){
     string path = "../data/shelves";
     path += id+".json";
-
+    
     try{
         ifstream is(path);
         jsoncons::json shlf = jsoncons::json::parse(is);
@@ -160,22 +161,46 @@ LoginData Database::read_login_data(string id){
     }
         
 }
-int Database::delete_student(int id) 
+int Database::delete_student(string id) 
 {
-    
+    string path = "data/students/"+id+"json";
+    if (remove(path.c_str( )) !=0)
+           cout<<"Remove operation failed"<<endl;
+     else
+           cout<<path<<" has been removed."<<endl;
 }
 
-int Database::delete_book(int id) 
+int Database::delete_book(string id) 
 {
-    
+    string path = "data/books/"+id+"json";
+    if (remove(path.c_str( )) !=0)
+           cout<<"Remove operation failed"<<endl;
+     else
+           cout<<path<<" has been removed."<<endl;
 }
 
-int Database::delete_admin(int id) 
+int Database::delete_admin(string id) 
 {
-    
+    string path = "data/admins/"+id+"json";
+    if (remove(path.c_str( )) !=0)
+           cout<<"Remove operation failed"<<endl;
+     else
+           cout<<path<<" has been removed."<<endl;
 }
 
-int Database::delete_shelf(int id) 
+int Database::delete_shelf(string id) 
 {
-    
+    string path = "data/shelves/"+id+"json";
+    if (remove(path.c_str( )) !=0)
+           cout<<"Remove operation failed"<<endl;
+     else
+           cout<<path<<" has been removed."<<endl;
+}
+
+int main()
+{
+    Database database;
+
+    database.delete_student(11111);
+    return 0;
 }

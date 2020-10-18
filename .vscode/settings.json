@@ -76,6 +76,8 @@
         "memory_resource": "cpp",
         "random": "cpp",
         "set": "cpp",
-        "variant": "cpp"
-    }
+        "variant": "cpp",
+        "*.ipp": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }
