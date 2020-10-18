@@ -60,11 +60,17 @@ int Login::login(){
     }
   }
 
-  string Login::to_json(Login input){
+  string Login::to_json(LoginData input){
     string temp="{";
     temp += "name:"+input.get_name();
     temp += "password:"+ to_string(input.get_password());
     temp += "}";
     return temp;
+  }
+  int main(void){
+    Login loginobjekt;
+    int variabl=loginobjekt.login();
+    return 0;
+
   }
 
