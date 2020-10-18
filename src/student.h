@@ -11,7 +11,7 @@ private:
     string name;
     string address;
     string birthdate;
-
+    Book current_list[3]= {Book()}
 public:
   bool valid = true;
   Student();

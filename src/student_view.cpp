@@ -95,7 +95,8 @@ void borrow_book(){
     }
 
 }
-
 void view_current_list(){
-
+for(int i=0; i<3; i++){
+    cout<<curr_student.current_list[i].get_name();
+}
 }

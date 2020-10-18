@@ -9,14 +9,14 @@ using namespace std;
       
       valid = false;
 	  }  
-  	Student::Student(int id, string nm, string adrs, string BD)  
+  	Student::Student(string id, string nm, string adrs, string BD)  
         {
            ID=id;
            name=nm;
            address=adrs;
            birthdate=BD;
         }
-    void Student::set_ID(int id) {
+    void Student::set_ID(string id) {
       ID=id;
     }
     void Student::set_name(string nm) {
@@ -30,7 +30,7 @@ using namespace std;
       birthdate=BD;
     }
     
-    int Student::get_id() {
+    string Student::get_id() {
       return ID;
     }
     string Student::get_name() {
@@ -42,4 +42,13 @@ using namespace std;
      string Student::get_birth_date() {
       return birthdate;
     }
+    void borrow_book(string book_id){
+      for(int i=0; i<3; i++){
+        if(current_list[i].valid == false){
+          current_list[i] = database.get_book(book_id);
+          return;
+        }
+        cout<<"You already have three books in your list"<<endl;
+      }
+
 };
