@@ -1,5 +1,5 @@
 #include "book.h"
-using namespace std;
+
 Book::Book(){
 	valid = false;
 }

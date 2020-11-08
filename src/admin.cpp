@@ -4,6 +4,7 @@
 #include "student.h"
 #include "database.h"
 #include "admin.h"
+using namespace ADMIN_S;
 using namespace std;
 
 Admin::Admin(){}

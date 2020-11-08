@@ -3,6 +3,8 @@
 
 #include<iostream>
 #include <string>
+#include "book.h"
+//using namespace B;
 using namespace std;
 
 class Student {
@@ -11,7 +13,7 @@ private:
     string name;
     string address;
     string birthdate;
-    Book current_list[3]= {Book()}
+    Book current_list[3]= {Book()};
 public:
   bool valid = true;
   Student();

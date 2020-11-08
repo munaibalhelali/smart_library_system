@@ -1,8 +1,5 @@
 #include "database.h"
 
-using namespace ADMIN_S;
-using namespace std;
-
 void list_dir(const char *path) {
    struct dirent *entry;
    DIR *dir = opendir(path);
@@ -20,6 +17,10 @@ void list_dir(const char *path) {
 
 Database::Database(){}
 
+// Book* read_books(){
+//     Book books[5] = {Book()};
+//     return books;
+// }
 //write to files one item a time
 int Database::write_student(Student student){
     string path = "../data/students";
@@ -30,8 +31,17 @@ int Database::write_student(Student student){
     json_student.insert_or_assign("name", student.get_name()); 
     json_student.insert_or_assign("id", student.get_ID());
     json_student.insert_or_assign("address", student.get_address() );
-    json_student.insert_or_assign("birthdate", student.get_birth_date());
-    json_student.insert_or_assign("book_list", student.get_book_list());
+    json_student.insert_or_assign("birthdate", student.get_birthdate());
+    for(int i =0 ; i<3; i++){
+        Book book = student.current_list[i];
+        jsoncons::json json_book;
+
+        json_book.insert_or_assign("name", book.get_name()); 
+        json_book.insert_or_assign("id", book.get_id());
+        json_book.insert_or_assign("author", book.get_author());
+
+        json_student.insert_or_assign("book_list", json_book);
+    }
     
     cout<<json_student<<endl;
     ofstream output_file(path,ios::out);
@@ -96,53 +106,54 @@ Student Database::get_student(string id){
     try{
         ifstream is(path);
         jsoncons::json std = jsoncons::json::parse(is);
-        Student student(std["id"], std["name"], 
-                        std["address"], std["birthdate"]);
+        Student student(std["id"].as<std::string>(), std["name"].as<std::string>(), 
+                        std["address"].as<std::string>(), std["birthdate"].as<std::string>());
         return student;
-    }catch{
-        return Student student();
+    }catch(int e){
+        return Student();
     }
     
 }
-auto Database::get_book(string id){
+Book Database::get_book(string id){
     string path = "../data/books";
     path += id+".json";
 
     try{
         ifstream is(path);
         jsoncons::json bk = jsoncons::json::parse(is);
-        Book book(bk["name"], bk["id"], bk["author"]);
+        Book book(bk["name"].as<std::string>(), bk["id"].as<std::string>()
+        , bk["author"].as<std::string>());
         return book;
-    }catch{
-        return false;
+    }catch(int e){
+        return Book();
     }
 }
-auto Database::get_admin(string id){
+Admin Database::get_admin(string id){
     string path = "../data/admins";
     path += id+".json";
 
     try{
         ifstream is(path);
         jsoncons::json admn = jsoncons::json::parse(is);
-        Admin admin(admn["id"], admn["name"], 
-                        admn["address"], admn["birthdate"]);
+        Admin admin(admn["id"].as<std::string>(), admn["name"].as<std::string>(), 
+                        admn["address"].as<std::string>(), admn["birthdate"].as<std::string>());
         return admin;
-    }catch{
-        return false;
+    }catch(int e){
+        return Admin();
     }
 }
-auto Database::get_shelf(string id){
+Shelf Database::get_shelf(string id){
     string path = "../data/shelves";
     path += id+".json";
     
     try{
         ifstream is(path);
         jsoncons::json shlf = jsoncons::json::parse(is);
-        Shelf shelf(shlf["id"], shlf["name"], 
-                        shlf["location"]);
+        Shelf shelf(shlf["id"].as<std::string>(), shlf["name"].as<std::string>(), 
+                        shlf["location"].as<std::string>());
         return shelf;
-    }catch{
-        return false;
+    }catch(int e){
+        return Shelf();
     }
 }
 
@@ -154,9 +165,10 @@ LoginData Database::read_login_data(string id){
     try{
         ifstream is(path);
         jsoncons::json lgn_info = jsoncons::json::parse(is);
-        LoginData user_data(lgn_info["name"], lgn_info["password"]);
+        LoginData user_data(lgn_info["name"].as<std::string>()
+        , lgn_info["password"].as<std::string>());
         return user_data;
-    }catch{
+    }catch(int e){
         cout<<"User ID does not exist!"<<endl;
         LoginData user_data;
         user_data.is_valid(false);
@@ -198,12 +210,4 @@ int Database::delete_shelf(string id)
            cout<<"Remove operation failed"<<endl;
      else
            cout<<path<<" has been removed."<<endl;
-}
-
-int main()
-{
-    Database database;
-
-    database.delete_student(11111);
-    return 0;
 }

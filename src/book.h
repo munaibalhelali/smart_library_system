@@ -3,34 +3,37 @@
 
 #include<iostream>
 #include<string>
-using namespace std;
-class Book {
 
-private :
-	string  name;
-	string author; 
-	string id;
-	bool available = true;
-	
-public:
-	bool valid=true;
-	Book();
-    Book(string in_name, string in_id, string in_author);
-	void set_name(string n);
-	
-	void set_author(string a);
-	
-	void set_id(string i);
-	
-	string get_name();
-	
-	string get_author();
-	
-	string get_id();
+//namespace B{
+	class Book {
 
-	void make_available(bool status);
+		private :
+			std::string  name;
+			std::string author; 
+			std::string id;
+			bool available = true;
+			
+		public:
+			bool valid=true;
+			Book();
+			Book(std::string in_name, std::string in_id, std::string in_author);
+			void set_name(std::string n);
+			
+			void set_author(std::string a);
+			
+			void set_id(std::string i);
+			
+			std::string get_name();
+			
+			std::string get_author();
+			
+			std::string get_id();
+
+			void make_available(bool status);
 
 
-};
+		};
+//}
+
 
 #endif

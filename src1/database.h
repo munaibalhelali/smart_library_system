@@ -13,7 +13,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <fstream>
-
+using namespace std;
 
 
 class Database{
@@ -36,7 +36,7 @@ class Database{
         //write to files one item a time
         int write_student(Student student);
         int write_book(Book book);
-        int write_admin(ADMIN_S::Admin admin);
+        int write_admin(Admin admin);
         int write_shelf(Shelf shelf);
 
         //getters

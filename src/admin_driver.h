@@ -1,11 +1,11 @@
 #include<iostream>
 #include<string>
-#include<Admin.h>
-class admindriver{
+#include"admin.h"
+class AdminDriver{
    int  check[3];
     public:
     
-    void adminview();
+    void admin_view();
     void student1();
     void admin1();
     void book1();

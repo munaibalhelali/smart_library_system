@@ -1,10 +1,10 @@
-#include<admindriver.h>
+#include<admin_driver.h>
 #include<string>
 using namespace std ;   
- void admindriver::adminview(){
-    cout<<"hello and wellcom admine ! "<<endl;
-    cout<<"please chooose an process : "<<endl;
-    cout<<"1-add  or remove an stuednt\n 2-add or remove an admine \n 3-add or remove  a book "<<endl;
+void AdminDriver::admin_view(){
+    cout<<"hello and wellcom admin ! "<<endl;
+    cout<<"please chooose a process : "<<endl;
+    cout<<"1-add  or remove an student\n 2-add or remove an admin \n 3-add or remove  a book "<<endl;
     cin>>check[0];
     if (check[0]==0){
         review(); //ashraf must do it 
@@ -25,7 +25,7 @@ using namespace std ;
         break;
     }
 }
-void admindriver::student1(){
+void AdminDriver::student1(){
     cout<<"1-add student \n2-remove student ";
     cin>>check[1];
       admin case1;
@@ -44,9 +44,9 @@ void admindriver::student1(){
         cout<<"the process has been done !";
         }
 }
- void admindriver::admin1(){
+ void AdminDriver::admin1(){
         admin case2;
-        cout<<"1-add admine \n 2-remove admin";
+        cout<<"1-add admin \n 2-remove admin";
         cin>>check[1];
       if (check[1]==1)
         {
@@ -55,7 +55,7 @@ void admindriver::student1(){
         cout<<"would you like to add/remove more Ddmins  {1-yes \n 2-no} ";
         cin<<check[2];
         if(check[2]==1){
-            admine1();
+            admin1();
             }
         }
     else if(check[1]==2){
@@ -64,11 +64,11 @@ void admindriver::student1(){
          cout<<"would you like to add/remove more Ddmins  {1-yes \n 2-no} ";
         cin<<check[2];
         if(check[2]==1){
-            admine1();
+            admin1();
         }
     }
         }
-void admindriver::book1(){
+void AdminDriver::book1(){
 admin case3;
 cout<<"1-add book \n 2-remove book";
    if (check[1]==1)
