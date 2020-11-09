@@ -152,7 +152,7 @@ void Admin::remove_book(){
 }
 
 int write_book(Book book){
-    string path = "../data/books";
+    string path = "../data/books/";
     path +=book.get_id()+".json";
 
     jsoncons::json json_book;
@@ -169,7 +169,7 @@ int write_book(Book book){
     }
 
 int write_student(Student student){
-    string path = "../data/students";
+    string path = "../data/students/";
     path +=student.get_ID()+".json";
 
     jsoncons::json json_student;
@@ -197,7 +197,7 @@ int write_student(Student student){
 }
 
 int write_admin(Admin admin){
-    string path = "../data/admins";
+    string path = "../data/admins/";
     path +=admin.get_id()+".json";
 
     jsoncons::json json_admin;
@@ -215,7 +215,7 @@ int write_admin(Admin admin){
     }
 
     Student get_student(string id){
-    string path = "../data/students";
+    string path = "../data/students/";
     path += id+".json";
 
     try{
@@ -232,7 +232,7 @@ int write_admin(Admin admin){
 }
 
 Admin get_admin(string id){
-    string path = "../data/admins";
+    string path = "../data/admins/";
     path += id+".json";
 
     try{
@@ -247,7 +247,7 @@ Admin get_admin(string id){
 }
 
 Book get_book(string id){
-    string path = "../data/books";
+    string path = "../data/books/";
     path += id+".json";
 
     try{

@@ -98,7 +98,7 @@ using namespace std;
 // }
 
 Book get_book(string id){
-    string path = "../data/books";
+    string path = "../data/books/";
     path += id+".json";
 
     try{
