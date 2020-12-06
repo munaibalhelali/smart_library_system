@@ -1,6 +1,6 @@
 #include "shelf.h"
 
-
+Shelf::Shelf(){}
 Shelf::Shelf(string in_id , string in_name, string in_location){
     name = in_name;
     id = in_id;
@@ -16,12 +16,12 @@ string Shelf::get_id(){
 string Shelf::get_location(){
     return location;
 }
-Book Shelf::get_available_books(){
+Book* Shelf::get_available_books(){
     return available_books;
 }
 
 void Shelf::add_book(Book b){
-    for(int i=0; i<size;i++){
+    for(int i=0; i<20;i++){
      if (available_books[i].valid == false ){
          available_books[i] = b;
          return;
@@ -31,14 +31,14 @@ void Shelf::add_book(Book b){
 }
 void Shelf::remove_book(string book_name){
     char confirmation;
-    for(int i=0; i<size;i++){
-        if (available_books[i] .valide != false ){
+    for(int i=0; i<20;i++){
+        if (available_books[i].valid != false ){
             if (available_books[i].get_name().compare(book_name) == 0){
                 cout<< "Book with title: "<<book_name<<"was found!"<<endl<<"Confirm delete? [y/n]: ";
-                cin>>confrimation;
-                if (confrimation == 'y'||confirmation == 'Y'){
+                cin>>confirmation;
+                if (confirmation == 'y'||confirmation == 'Y'){
                     available_books[i].valid = false;  
-                    return
+                    return;
                 }
             }
      }

@@ -1,7 +1,7 @@
-#include<admin_driver.h>
+#include "admin_driver.h"
 #include<string>
 using namespace std ;   
-void AdminDriver::admin_view(){
+void admin_view(){
     cout<<"hello and wellcom admin ! "<<endl;
     cout<<"please chooose a process : "<<endl;
     cout<<"1-add  or remove an student\n 2-add or remove an admin \n 3-add or remove  a book "<<endl;
@@ -25,7 +25,7 @@ void AdminDriver::admin_view(){
         break;
     }
 }
-void AdminDriver::student1(){
+void student1(){
     cout<<"1-add student \n2-remove student ";
     cin>>check[1];
       admin case1;
@@ -44,7 +44,7 @@ void AdminDriver::student1(){
         cout<<"the process has been done !";
         }
 }
- void AdminDriver::admin1(){
+ void admin1(){
         admin case2;
         cout<<"1-add admin \n 2-remove admin";
         cin>>check[1];
@@ -68,7 +68,7 @@ void AdminDriver::student1(){
         }
     }
         }
-void AdminDriver::book1(){
+void book1(){
 admin case3;
 cout<<"1-add book \n 2-remove book";
    if (check[1]==1)

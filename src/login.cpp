@@ -12,7 +12,7 @@ int Login::login(){
       cout<<"Welcom admin!"<<endl;
       LoginData user_data;
       string user_name;
-      int user_password;
+      string user_password;
       cout<<"Enter your Name: ";
       cin>>user_name;
       try{
@@ -28,7 +28,7 @@ int Login::login(){
         cout<<"Execption:"<<e<<endl;
       }
       cout<<user_data.get_name()<<" "<<user_data.get_password() <<endl;
-      if(user_data.get_name()==user_name && user_data.get_password()==user_password){
+      if(user_data.get_name()== user_name && user_data.get_password()==user_password){
 
               cout<<"Welcome, Admin "<< user_name<<endl;
       }
@@ -39,11 +39,11 @@ int Login::login(){
     LoginData user_data;
 
     string user_name;
-    int user_password;
+    string user_password;
     cout<<"Enter your Name: ";
     cin>>user_name;
     try{
-    user_data = read_login_data(user_name);
+    user_data = database.read_login_data(user_name);
     } catch(int) {
     cout<<"User name does not exist!"<<endl;
         return 0;
@@ -52,7 +52,7 @@ int Login::login(){
     cout<<"Enter your password: ";
     cin>>user_password;
      
-      if(user_data.get_name==user_name && user_data.get_password==user_password){
+      if(user_data.get_name()==user_name && user_data.get_password()==user_password){
       cout<<"Welcome, Student "<< user_name <<endl;
       return 1;
      }
@@ -63,14 +63,14 @@ int Login::login(){
   string Login::to_json(LoginData input){
     string temp="{";
     temp += "name:"+input.get_name();
-    temp += "password:"+ to_string(input.get_password());
+    temp += "password:"+ (string)input.get_password();
     temp += "}";
     return temp;
   }
-  int main(void){
-    Login loginobjekt;
-    int variabl=loginobjekt.login();
-    return 0;
+  // int main(void){
+  //   Login loginobjekt;
+  //   int variabl=loginobjekt.login();
+  //   return 0;
 
-  }
+  // }
 

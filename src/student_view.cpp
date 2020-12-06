@@ -1,7 +1,9 @@
-#include <iostream>
+#include "student_view.h"
+
 using namespace std;
 
-Student curr_student;
+
+
 void student_view(){
     // promote user for choice
     int choice;
@@ -14,19 +16,19 @@ void student_view(){
 
         cin>>choice;
         switch(choice){
-            case choice == 1:
+            case 1:
                 borrow_book();
                 break;
-            case choice == 2:
+            case 2:
                 return_book();
                 break;
-            case choice == 3:
+            case 3:
                 view_current_list();
                 break;
-            case choice == 4:
+            case 4:
                 return;
             default:
-                cout<<"Input is not valid. Try again!"
+                cout<<"Input is not valid. Try again!"<<endl;
         }
         
     }
@@ -35,7 +37,7 @@ void student_view(){
 
 
 void return_book(){
-    int size = sizeof(curr_student.book_list);
+    int size = sizeof(curr_student.current_list);
     int choice;
     char confirm;
     string id;
@@ -43,24 +45,24 @@ void return_book(){
     cout<<"Your list of borrowed books:"<<endl;
     for(int i=0; i<size ; i++){
         
-        id = curr_student.book_list[i];
+        id = curr_student.current_list[i].get_id();
         if (id != ""){
-            book = database.get_book(id );
+            book = Database().get_book(id );
             cout<<"["<<i+1<<"]"<<book.get_name()<<endl;
         }
     }
     cout<<"Choose a book to return: ";
     cin>> choice;
-    id = curr_student.book_list[choice-1];
-    book = database.get_book(id );
+    id = curr_student.current_list[choice-1].get_id();
+    book = Database().get_book(id );
     cout << "You choosed the following book:\n"<<book.get_name()<<endl;
     cout<<"Confirm [y/n]: ";
     cin>>confirm;
     if (confirm =='y'|| confirm=='Y'){
-        curr_student.book_list[choice-1] = "";
+        curr_student.current_list[choice-1].get_id() = "";
         book.make_available(true);
-        database.write_book(book);
-        database.write_student(curr_student)
+        Database().write_book(book);
+        Database().write_student((Student)curr_student);
 
         cout<<"Success!"<<endl;
     }
@@ -68,7 +70,7 @@ void return_book(){
 }
 
 void borrow_book(){
-    Book* book_list = database.read_books();
+    Book* book_list = Database().read_books();
     int size = sizeof(*book_list);
     int choice;
     char confirm;
@@ -76,22 +78,22 @@ void borrow_book(){
     cout<<"List of available books:"<<endl;
     for(int i=0; i<size ; i++){
         
-        book = *book_list[i]
+        Book book = book_list[i];
         cout<<"["<<i+1<<"]"<<book.get_name()<<endl;
     
     }
     cout<<"Choose a book to return: ";
     cin>> choice;
 
-    cout << "You choosed the following book:\n"<<*book_list[choice-1].get_name()<<endl;
+    cout << "You choosed the following book:\n"<<book_list[choice-1].get_name()<<endl;
     cout<<"Confirm [y/n]: ";
     cin>>confirm;
     if (confirm =='y'|| confirm=='Y'){
-        curr_student.book_list[choice-1] = *book_list[choice-1].get_id();
-        *book_list[choice-1].make_available(false);
-        database.write_book(*book_list[choice-1]);
-        database.write_student(curr_student);
-        cout<<"Success!"
+        curr_student.current_list[choice-1].get_id() = book_list[choice-1].get_id();
+        book_list[choice-1].make_available(false);
+        Database().write_book(book_list[choice-1]);
+        Database().write_student((Student)curr_student);
+        cout<<"Success!"<<endl;
     }
 
 }
