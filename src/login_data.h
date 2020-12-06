@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 class LoginData {
@@ -13,10 +14,12 @@ class LoginData {
     public:
     LoginData();
     LoginData(string in_name, string password);
-    void is_valid(bool val);
+    void set_valid(bool val);
+    void set_name(string in_name);
+    void set_password(string in_password);
     string get_name();
     string get_password();
-
+    bool is_valid();
     bool is_correct(LoginData in_data);
     };
  

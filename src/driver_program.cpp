@@ -4,6 +4,10 @@
 #include<string>
 #include"admin.h"
 #include "database.h"
+#include "login.h"
+#include "login_data.h"
+#include "student.h"
+
 using namespace std;
 void student_view();
 void return_book();
@@ -14,26 +18,25 @@ void admin_view();
 void student();
 void admin();
 void book();
-
+// Student get_student(string id);
 
 Student curr_student;
-
+Login login;
 int  check[3];
 int main(void ){
-    int user_input;
+    int user_type;
     cout<<"Welcome to Smart Library System (SLS)!"<<endl;
     while(true){
         
-        cout<<"Choose user type:\n[1] Admin\n[2] Student\n[3] Quit program"<<endl;
-        cout<<"Your input: ";
-        cin>>user_input;
+        user_type = login.login();
 
-        if(user_input == 1){
+        if(user_type == 1){
             admin_view();
-        }else if(user_input == 2){
+        }else if(user_type == 2){
+            curr_student = Database().get_student(login.get_current_user_id());
             student_view();
-        }else if (user_input == 3){
-            break;
+        }else if (user_type == 0){
+            continue;
         }else{
             cout<<"Invalid input!"<<endl;
         }
@@ -207,7 +210,10 @@ void student(){
                 }
         }
         else if(check[1]==2){
-            case2.remove_admin();
+            string id;
+            cout<<"Enter the admin username: ";
+            cin>> id;
+            Database().delete_admin(id);
             cout<<"the process has been done !"<<endl;
             cout<<"would you like to add/remove more Ddmins  {1-yes \n 2-no} ";
             cin>>check[2];
@@ -248,3 +254,19 @@ Book* read_books(){
     Book books[5] = {Book()};
     return books;
 }
+
+// Student get_student(string id){
+//     string path = "../data/students";
+//     path += id+".json";
+
+//     try{
+//         ifstream is(path);
+//         jsoncons::json std = jsoncons::json::parse(is);
+//         Student student(std["id"].as<std::string>(), std["name"].as<std::string>(), 
+//                         std["address"].as<std::string>(), std["birthdate"].as<std::string>());
+//         return student;
+//     }catch(int e){
+//         return Student();
+//     }
+    
+// }

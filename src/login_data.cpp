@@ -1,19 +1,25 @@
 
 #include "login_data.h"
-
+using namespace std;
 LoginData::LoginData() 
 {
-
+    valid = false;
 }
 
 LoginData::LoginData(string in_name, string in_password) 
 {
-    name = in_name;
-    password = in_password;   
+    set_name(in_name);
+    set_password(in_password);  
     valid = true; 
 }
-void LoginData:: is_valid(bool val){
+void LoginData:: set_valid(bool val){
     valid = val;
+}
+void LoginData:: set_name(string in_name){
+    name = in_name;
+}
+void LoginData::set_password(string in_password){
+    password = in_password;
 }
 string LoginData::get_name() 
 {
@@ -25,13 +31,18 @@ string LoginData::get_password()
     return password;
 }
 
-bool LoginData::is_correct(LoginData in_data) 
-{
-    if( name.compare(in_data.get_name())
-        && password.compare(in_data.get_password())){
+bool LoginData::is_correct(LoginData in_data) {   
+;
+    if( name.compare(in_data.get_name()) == 0){
+        if(password.compare(in_data.get_password())==0){
             return true;
+        }
+            
     }else{
         return false;
     }
 }
 
+bool LoginData::is_valid(){
+    return valid;
+}

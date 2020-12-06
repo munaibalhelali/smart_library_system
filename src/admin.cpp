@@ -9,7 +9,7 @@ int write_admin(Admin admin);
 Student get_student(string id);
 Admin get_admin(string id);
 Book get_book(string id);
-
+int write_login_data(LoginData cred);
 
 Admin::Admin(){}
 Admin::Admin(string id, string name, string address, string birthdate){
@@ -64,6 +64,7 @@ string Admin::get_birthdate()
 
 void Admin::add_student(){
     Student student_temp;
+    LoginData credentials;
     string str_temp;
     char confirm;
     cout<<" please enter student name : "<<endl;
@@ -78,10 +79,17 @@ void Admin::add_student(){
     cout<<endl<<"please enter student address :";
     cin>>str_temp;
     student_temp.set_address(str_temp);
+    cout<<endl<<"please choose a password: ";
+    cin>>str_temp;
+    credentials.set_password(str_temp);
+    credentials.set_name(student_temp.get_name());
+    credentials.set_valid(true);
+
     cout<<"Do you want to save the student information?[y/n]: ";
     cin>>confirm;
     if (confirm == 'y' || confirm == 'Y'){
         write_student(student_temp);
+        write_login_data(credentials);
     }
 
     return ;
@@ -95,6 +103,7 @@ void Admin::remove_student(){
 void Admin::add_admin(){
 
     Admin admin_temp;
+    LoginData credentials;
     string str_temp;
     char confirm;
     cout<<"please enter admin name : "<<endl;
@@ -109,17 +118,23 @@ void Admin::add_admin(){
     cout<<endl<<"please enter admin address :";
     cin>>str_temp;
     admin_temp.set_address(str_temp);
+    cout<<endl<<"please choose a password: ";
+    cin>>str_temp;
+    credentials.set_password(str_temp);
+    credentials.set_name(admin_temp.get_id());
+    credentials.set_valid(true);
     cout<<"Do you want to save the admin information?[y/n]: ";
     cin>>confirm;
     if (confirm == 'y' || confirm == 'Y'){
         write_admin(admin_temp);
+        write_login_data(credentials);
     }
 
     return ;
 }
 void Admin::remove_admin(){
     string admin_id;
-    cout<<"please enter student id : ";
+    cout<<"please enter admin id : ";
     cin>>admin_id;
     get_admin(admin_id);
 }
@@ -214,7 +229,7 @@ int write_admin(Admin admin){
     
     }
 
-    Student get_student(string id){
+Student get_student(string id){
     string path = "../data/students/";
     path += id+".json";
 
@@ -228,7 +243,7 @@ int write_admin(Admin admin){
     }catch(int e){
         return Student();
     }
-    
+
 }
 
 Admin get_admin(string id){
@@ -260,3 +275,20 @@ Book get_book(string id){
         return Book();
     }
 }
+
+int write_login_data(LoginData cred){
+    string path = "../data/login_info/";
+    path +=cred.get_name()+".json";
+
+    jsoncons::json json_login;
+
+    json_login.insert_or_assign("name", cred.get_name()); 
+    json_login.insert_or_assign("password", cred.get_password());
+
+
+    cout<<json_login<<endl;
+    ofstream output_file(path,ios::out);
+    output_file<<json_login;
+    output_file.close();
+    
+    }

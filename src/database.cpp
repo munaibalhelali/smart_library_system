@@ -158,20 +158,24 @@ Shelf Database::get_shelf(string id){
 }
 
 LoginData Database::read_login_data(string id){
-
-    string path = "../data/login_info";
+    cout<<"In read login function!"<<endl;
+    string path = "../data/login_info/";
     path += id+".json";
 
     try{
         ifstream is(path);
         jsoncons::json lgn_info = jsoncons::json::parse(is);
-        LoginData user_data(lgn_info["name"].as<std::string>()
-        , lgn_info["password"].as<std::string>());
-        return user_data;
+        string name = lgn_info["name"].as<std::string>();
+        string password = lgn_info["password"].as<std::string>();
+        LoginData login;
+        login.set_name(name);
+        login.set_password(password);
+        login.set_valid(true);
+        return login;
     }catch(int e){
         cout<<"User ID does not exist!"<<endl;
         LoginData user_data;
-        user_data.is_valid(false);
+        user_data.set_valid(false);
         return user_data;
     }
         
@@ -196,7 +200,7 @@ int Database::delete_book(string id)
 
 int Database::delete_admin(string id) 
 {
-    string path = "data/admins/"+id+"json";
+    string path = "../data/admins/"+id+".json";
     if (remove(path.c_str( )) !=0)
            cout<<"Remove operation failed"<<endl;
      else
