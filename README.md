@@ -13,7 +13,7 @@ You can run the run.sh file to build and execute the system automatically or do 
 - In build run cmake and build:
     ```sh 
         cmake ..
-        build 
+        make
     ```
 
 - The resulting executable will be in the build directory:
