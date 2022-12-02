@@ -2,7 +2,7 @@
 #define STUDENT_VIEW
 
 #include <iostream>
-#include "student.h"
+#include "smart_library_system/student.hpp"
 
 void student_view();
 void return_book();

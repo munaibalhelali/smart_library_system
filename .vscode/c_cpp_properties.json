@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${default}"
+                "${default}",
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "cStandard": "gnu11",

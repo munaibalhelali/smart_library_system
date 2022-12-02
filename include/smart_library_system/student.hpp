@@ -3,21 +3,22 @@
 
 #include <iostream>
 #include <string>
-#include "admin.h"
-#include "book.h"
+#include "smart_library_system/admin.hpp"
+#include "smart_library_system/book.hpp"
 #include <jsoncons/json.hpp>
-#include "extra_functions.h"
+#include "smart_library_system/extra_functions.hpp"
 using namespace std;
 
-class Student {
+class Student
+{
 private:
-    string ID;
-    string name;
-    string address;
-    string birthdate;
-   
+  string ID;
+  string name;
+  string address;
+  string birthdate;
+
 public:
-  Book current_list[3]= {Book()};
+  Book current_list[3] = {Book()};
   bool valid = true;
   Student();
   Student(string id, string nm, string adrs, string BD);
@@ -34,4 +35,4 @@ public:
   void borrow_book(string book_id);
 };
 
-#endif 
+#endif

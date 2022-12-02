@@ -1,14 +1,23 @@
 # smart_library_system
 
 ## To compile the code:
-g++-7 -o driver driver_program.cpp admin.cpp book.cpp database.cpp login_data.cpp login.cpp shelf.cpp student.cpp 
+You can run the run.sh file to build and execute the system automatically or do it manually as follows:
 
-or
+- Create a build directory and move into it:
+    
+   ```sh
+        mkdir build
+        cd build
+   ``` 
 
-g++ -o driver driver_program.cpp admin.cpp book.cpp database.cpp login_data.cpp login.cpp shelf.cpp student.cpp -std=c++11
+- In build run cmake and build:
+    ```sh 
+        cmake ..
+        build 
+    ```
 
-Note: Please ignore the warning.
-
-## To run the code: 
-./driver
+- The resulting executable will be in the build directory:
+    ```sh 
+        ./smart_library_system
+    ```
 

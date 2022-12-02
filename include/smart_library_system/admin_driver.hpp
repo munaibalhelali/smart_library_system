@@ -1,10 +1,10 @@
 #ifndef ADMIN_DRIVER
 #define ADMIN_DRIVER
 
-#include<iostream>
-#include<string>
-#include"admin.h"
-int  check[3];
+#include <iostream>
+#include <string>
+#include "smart_library_system/admin.hpp"
+int check[3];
 
 void admin_view();
 void student1();
